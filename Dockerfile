@@ -4,13 +4,13 @@ FROM tomcat:9.0-jdk11
 # Eliminamos la app por defecto
 RUN rm -rf /usr/local/tomcat/webapps/ROOT
 
-# Copiamos el contenido de la carpeta 'web' (JSP, HTML, etc.)
+# Copiamos JSPs y recursos
 COPY ./web /usr/local/tomcat/webapps/ROOT
 
-# Copiamos las clases compiladas (NetBeans las guarda en build/classes)
+# Copiamos las clases compiladas generadas por NetBeans
 COPY ./build/classes /usr/local/tomcat/webapps/ROOT/WEB-INF/classes
 
-# Exponemos el puerto 8080
+# Exponemos el puerto
 EXPOSE 8080
 
 # Iniciamos Tomcat
