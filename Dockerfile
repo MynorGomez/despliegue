@@ -1,17 +1,16 @@
-# Imagen base de Tomcat 9 con Java 11
+## Imagen base de Tomcat 9 con Java 11
 FROM tomcat:9.0-jdk11
 
-# Eliminamos la app por defecto
+# Eliminamos la aplicación por defecto
 RUN rm -rf /usr/local/tomcat/webapps/ROOT
 
-# Copiamos JSPs y recursos
-COPY ./web /usr/local/tomcat/webapps/ROOT
+# Copiamos el archivo WAR generado por NetBeans
+# (ajusta el nombre del .war según el que esté en tu carpeta dist/)
+COPY ./dist/Sistema.war /usr/local/tomcat/webapps/Sistema.war
 
-# Copiamos las clases compiladas generadas por NetBeans
-COPY ./build/classes /usr/local/tomcat/webapps/ROOT/WEB-INF/classes
-
-# Exponemos el puerto
+# Exponemos el puerto 8080
 EXPOSE 8080
 
 # Iniciamos Tomcat
 CMD ["catalina.sh", "run"]
+
